@@ -39,3 +39,5 @@ build/
 .env
 .env.local
 .env.*
+.pre-commit-config.yaml
+trufflehog/

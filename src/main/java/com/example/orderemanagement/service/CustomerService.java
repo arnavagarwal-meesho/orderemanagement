@@ -29,7 +29,7 @@ public class CustomerService {
         Customer customer = customerRepository.findByEmail(requestDto.getEmail())
                             .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
-        if(passwordEncoder.matches(requestDto.getPassword(), customer.getPassword())) {
+        if(!passwordEncoder.matches(requestDto.getPassword(), customer.getPassword())) {
             throw new RuntimeException("Invalid email or password");
         }
 

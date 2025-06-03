@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 spring:
   datasource:
@@ -13,8 +13,9 @@ spring:
       uri: ${MONGODB_URI:mongodb://localhost:27017}
       database: ${MONGODB_DATABASE:order_notifications}
     redis:
-      port: ${REDIS_PORT:6379}
-      host: ${REDIS_HOST:localhost}
+      host: localhost
+      port: 6379
+      timeout: 2000
 
   kafka:
     bootstrap-servers: ${KAFKA_SERVERS:localhost:9092}
@@ -26,12 +27,26 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        generate_statistics: true
+
+  integration:
+    redis:
+      lock:
+        registry:
+          expiry-time: 30000
 
 logging:
   level:
     org:
       springframework:
         web: DEBUG
+        orm.jpa: DEBUG
+        transaction: DEBUG
+    org.hibernate:
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
+      stat: DEBUG
 
 admin:
   registration-secret: ${ADMIN_REGISTRATION_SECRET}

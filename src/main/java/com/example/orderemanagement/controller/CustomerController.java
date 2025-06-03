@@ -55,10 +55,11 @@ public class CustomerController {
     }
 
     @PostMapping("/products/buy")
-    public ResponseEntity<String> buyProduct(@RequestBody BuyProductRequestDto requestDto,
-                                              @RequestParam(required = false) Long id, 
-                                              @RequestParam(required = false) String name) {
-        productService.buyProduct(requestDto, id, name);
-        return new ResponseEntity<>("Product bought successfully", HttpStatus.OK);
+    public ResponseEntity<String> buyProduct(@Valid @RequestBody BuyProductRequestDto requestDto) {
+        System.out.println("-------------------------------------------------");
+        System.out.println("Request received: " + requestDto.getQuantity());
+        System.out.println("-------------------------------------------------");
+        Long orderId = productService.buyProduct(requestDto);
+        return new ResponseEntity<>("Product bought successfully with order ID: " + orderId, HttpStatus.OK);
     }
 }
