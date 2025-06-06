@@ -11,12 +11,10 @@ A Spring Boot-based Order Management System that handles customer orders, invent
 - Administrative Controls
 - Notifications
 
-## Technology Stack
+## Technology Versions
 
-- Java
-- Spring Boot
-- Elasticsearch
-- Apache Kafka
+- Java 24
+- Spring Boot 3.5.0
 
 ## Project Structure
 
@@ -67,6 +65,7 @@ mvn clean install
 
 4. Run the application:
 ```bash
+cd src
 mvn spring-boot:run
 ```
 
